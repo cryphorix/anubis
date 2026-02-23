@@ -71,18 +71,14 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
 				<footer>
 					<div class="centered-div">
 						<p>
-							{ localizer.T("protected_by") } <a href="https://github.com/TecharoHQ/anubis">Anubis</a> { localizer.T("protected_from") } <a
-	href="https://techaro.lol"
->Techaro</a>. { localizer.T("made_with") }.
+							{ localizer.T("protected_by") } { localizer.T("made_with") }.
 						</p>
-						<p>{ localizer.T("mascot_design") } <a href="https://bsky.app/profile/celphase.bsky.social">{ localizer.T("celphase") }</a>.</p>
 						if impressum != nil {
 							<p>
 								@templ.Raw(impressum.Footer)
 								-- <a href={ templ.SafeURL(anubis.BasePrefix + fmt.Sprintf("%simprint", anubis.APIPrefix)) }>Imprint</a>
 							</p>
 						}
-						<p>{ localizer.T("version_info") } <code>{ anubis.Version }</code>.</p>
 					</div>
 				</footer>
 			</main>
@@ -92,7 +88,7 @@ templ base(title string, body templ.Component, impressum *config.Impressum, chal
 
 templ errorPage(message, mail, code string, localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
-		<img id="image" alt="Sad Anubis" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/reject.webp?cacheBuster=" + anubis.Version }/>
+		<img id="image" alt="Access Denied" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/reject.webp?cacheBuster=" + anubis.Version }/>
 		<p>{ message }.</p>
 		if code != "" {
 			<code><pre>{ code }</pre></code>

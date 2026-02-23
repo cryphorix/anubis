@@ -44,14 +44,13 @@ bots:
   # Allow common "keeping the internet working" routes (well-known, favicon, robots.txt)
   - import: (data)/common/keep-internet-working.yaml
 
-  # # Punish any bot with "bot" in the user-agent string
-  # # This is known to have a high false-positive rate, use at your own risk
-  # - name: generic-bot-catchall
-  #   user_agent_regex: (?i:bot|crawler)
-  #   action: CHALLENGE
-  #   challenge:
-  #     difficulty: 16 # impossible
-  #     algorithm: slow # intentionally waste CPU cycles and time
+  # Punish any bot with "bot" in the user-agent string
+  - name: generic-bot-catchall
+    user_agent_regex: (?i:bot|crawler|spider|scraper)
+    action: CHALLENGE
+    challenge:
+      difficulty: 8
+      algorithm: fast
 
   # Requires a subscription to Thoth to use, see
   # https://anubis.techaro.lol/docs/admin/thoth#geoip-based-filtering
